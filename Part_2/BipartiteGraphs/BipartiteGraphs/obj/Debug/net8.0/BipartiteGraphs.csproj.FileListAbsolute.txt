@@ -1,0 +1,14 @@
+C:\Users\Nef0o0r\OneDrive\Study\2_cours\Sem_1\OOP coursach\Part_2\BipartiteGraphs\BipartiteGraphs\bin\Debug\net8.0\BipartiteGraphs.exe
+C:\Users\Nef0o0r\OneDrive\Study\2_cours\Sem_1\OOP coursach\Part_2\BipartiteGraphs\BipartiteGraphs\bin\Debug\net8.0\BipartiteGraphs.deps.json
+C:\Users\Nef0o0r\OneDrive\Study\2_cours\Sem_1\OOP coursach\Part_2\BipartiteGraphs\BipartiteGraphs\bin\Debug\net8.0\BipartiteGraphs.runtimeconfig.json
+C:\Users\Nef0o0r\OneDrive\Study\2_cours\Sem_1\OOP coursach\Part_2\BipartiteGraphs\BipartiteGraphs\bin\Debug\net8.0\BipartiteGraphs.dll
+C:\Users\Nef0o0r\OneDrive\Study\2_cours\Sem_1\OOP coursach\Part_2\BipartiteGraphs\BipartiteGraphs\bin\Debug\net8.0\BipartiteGraphs.pdb
+C:\Users\Nef0o0r\OneDrive\Study\2_cours\Sem_1\OOP coursach\Part_2\BipartiteGraphs\BipartiteGraphs\obj\Debug\net8.0\BipartiteGraphs.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Nef0o0r\OneDrive\Study\2_cours\Sem_1\OOP coursach\Part_2\BipartiteGraphs\BipartiteGraphs\obj\Debug\net8.0\BipartiteGraphs.AssemblyInfoInputs.cache
+C:\Users\Nef0o0r\OneDrive\Study\2_cours\Sem_1\OOP coursach\Part_2\BipartiteGraphs\BipartiteGraphs\obj\Debug\net8.0\BipartiteGraphs.AssemblyInfo.cs
+C:\Users\Nef0o0r\OneDrive\Study\2_cours\Sem_1\OOP coursach\Part_2\BipartiteGraphs\BipartiteGraphs\obj\Debug\net8.0\BipartiteGraphs.csproj.CoreCompileInputs.cache
+C:\Users\Nef0o0r\OneDrive\Study\2_cours\Sem_1\OOP coursach\Part_2\BipartiteGraphs\BipartiteGraphs\obj\Debug\net8.0\BipartiteGraphs.dll
+C:\Users\Nef0o0r\OneDrive\Study\2_cours\Sem_1\OOP coursach\Part_2\BipartiteGraphs\BipartiteGraphs\obj\Debug\net8.0\refint\BipartiteGraphs.dll
+C:\Users\Nef0o0r\OneDrive\Study\2_cours\Sem_1\OOP coursach\Part_2\BipartiteGraphs\BipartiteGraphs\obj\Debug\net8.0\BipartiteGraphs.pdb
+C:\Users\Nef0o0r\OneDrive\Study\2_cours\Sem_1\OOP coursach\Part_2\BipartiteGraphs\BipartiteGraphs\obj\Debug\net8.0\BipartiteGraphs.genruntimeconfig.cache
+C:\Users\Nef0o0r\OneDrive\Study\2_cours\Sem_1\OOP coursach\Part_2\BipartiteGraphs\BipartiteGraphs\obj\Debug\net8.0\ref\BipartiteGraphs.dll

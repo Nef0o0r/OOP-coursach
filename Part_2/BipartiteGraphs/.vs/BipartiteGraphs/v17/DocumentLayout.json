@@ -1,0 +1,53 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Nef0o0r\\OneDrive\\Study\\2_cours\\Sem_1\\OOP coursach\\Part_2\\BipartiteGraphs\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8338821D-0D81-42B7-A0B5-C37337677EAE}|BipartiteGraphs\\BipartiteGraphs.csproj|c:\\users\\nef0o0r\\onedrive\\study\\2_cours\\sem_1\\oop coursach\\part_2\\bipartitegraphs\\bipartitegraphs\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8338821D-0D81-42B7-A0B5-C37337677EAE}|BipartiteGraphs\\BipartiteGraphs.csproj|solutionrelative:bipartitegraphs\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8338821D-0D81-42B7-A0B5-C37337677EAE}|BipartiteGraphs\\BipartiteGraphs.csproj|c:\\users\\nef0o0r\\onedrive\\study\\2_cours\\sem_1\\oop coursach\\part_2\\bipartitegraphs\\bipartitegraphs\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8338821D-0D81-42B7-A0B5-C37337677EAE}|BipartiteGraphs\\BipartiteGraphs.csproj|solutionrelative:bipartitegraphs\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\Users\\Nef0o0r\\OneDrive\\Study\\2_cours\\Sem_1\\OOP coursach\\Part_2\\BipartiteGraphs\\BipartiteGraphs\\Class1.cs",
+              "RelativeDocumentMoniker": "BipartiteGraphs\\Class1.cs",
+              "ToolTip": "C:\\Users\\Nef0o0r\\OneDrive\\Study\\2_cours\\Sem_1\\OOP coursach\\Part_2\\BipartiteGraphs\\BipartiteGraphs\\Class1.cs",
+              "RelativeToolTip": "BipartiteGraphs\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHQBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T09:08:54.042Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Nef0o0r\\OneDrive\\Study\\2_cours\\Sem_1\\OOP coursach\\Part_2\\BipartiteGraphs\\BipartiteGraphs\\Program.cs",
+              "RelativeDocumentMoniker": "BipartiteGraphs\\Program.cs",
+              "ToolTip": "C:\\Users\\Nef0o0r\\OneDrive\\Study\\2_cours\\Sem_1\\OOP coursach\\Part_2\\BipartiteGraphs\\BipartiteGraphs\\Program.cs",
+              "RelativeToolTip": "BipartiteGraphs\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T09:05:52.996Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
