@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace BipartiteGraphs
+﻿namespace BipartiteGraphs
 {
     internal class BipartiteGraphs
     {
@@ -128,7 +125,7 @@ namespace BipartiteGraphs
 
         public void InputAllEdge()
         {
-            Console.WriteLine("Вводите по две ранее добавленные вершины через пробел, разделяя пары \"Enter\", между которыми находятся ребра (для окончания ввода введите \"END\"):");
+            Console.WriteLine("Вводите по две ранее добавленные вершины через пробел, разделяя пары \"Enter\",\nмежду которыми находятся ребра (для окончания ввода введите \"END\"):");
 
             string input;
             do
@@ -176,7 +173,6 @@ namespace BipartiteGraphs
             }
         }
 
-
         private void FindMatchings(List<Tuple<string, string>> currentMatching, List<List<Tuple<string, string>>> allMatchings, HashSet<string> usedVertices, List<Tuple<string, string>> allEdges)
         {
             // Если текущее паросочетание не пусто, добавляем его в список
@@ -214,7 +210,6 @@ namespace BipartiteGraphs
                 }
             }
         }
-
         public List<List<Tuple<string, string>>> FindAllMatchings()
         {
             List<List<Tuple<string, string>>> allMatchings = new List<List<Tuple<string, string>>>();
@@ -236,9 +231,6 @@ namespace BipartiteGraphs
 
             return allMatchings;
         }
-
-
-
 
         // Метод для вывода всех паросочетаний
         public void PrintAllMatchings(List<List<Tuple<string, string>>> allMatchings)
@@ -262,7 +254,6 @@ namespace BipartiteGraphs
             List<List<Tuple<string, string>>> allMatchings = FindAllMatchings(); // Находим все паросочетания
             PrintAllMatchings(allMatchings); // Выводим все паросочетания
         }
-
 
         // Функция для сортировки паросочетаний по количеству пар
         public List<List<Tuple<string, string>>> SortMatchingsBySizeAndInside(List<List<Tuple<string, string>>> allMatchings)
@@ -340,8 +331,6 @@ namespace BipartiteGraphs
             // Выводим отсортированные паросочетания
             PrintAllMatchings(sortedMatchings);
         }
-
-
 
         //Метод для нахождения числа совершенных паросочетаний
         public int IsPerfectMatching()

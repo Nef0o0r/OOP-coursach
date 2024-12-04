@@ -12,3 +12,4 @@ C:\Users\Nef0o0r\OneDrive\Study\2_cours\Sem_1\OOP coursach\Part_2\BipartiteGraph
 C:\Users\Nef0o0r\OneDrive\Study\2_cours\Sem_1\OOP coursach\Part_2\BipartiteGraphs\BipartiteGraphs\obj\Debug\net8.0\BipartiteGraphs.pdb
 C:\Users\Nef0o0r\OneDrive\Study\2_cours\Sem_1\OOP coursach\Part_2\BipartiteGraphs\BipartiteGraphs\obj\Debug\net8.0\BipartiteGraphs.genruntimeconfig.cache
 C:\Users\Nef0o0r\OneDrive\Study\2_cours\Sem_1\OOP coursach\Part_2\BipartiteGraphs\BipartiteGraphs\obj\Debug\net8.0\ref\BipartiteGraphs.dll
+C:\Users\Nef0o0r\OneDrive\Study\2_cours\Sem_1\OOP coursach\Part_2\BipartiteGraphs\BipartiteGraphs\obj\Debug\net8.0\BipartiteGraphs.sourcelink.json
