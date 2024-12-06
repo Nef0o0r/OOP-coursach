@@ -9,6 +9,9 @@ namespace SeaPort
         public int ContainerCranes { get; set; } //Количество "контейнерных" кранов
 
         public List<Ship> actualShips = new List<Ship>(); //Корабли находящиеся в порту на данный момент
+
+        public List<Ship> servedShips = new List<Ship>();
+
         public Port()
         {
             BulkCranes = 0;

@@ -14,7 +14,7 @@
             {
                 string name = "Ship" + (i + 1); // Имя судна
                 CargoType cargoType = (CargoType)(random.Next(0, cargoTypeCount)); // Тип груза
-                double cargoWeight = random.Next(2000, 10001); // Случайный вес груза
+                double cargoWeight = random.Next(20000, 100010); // Случайный вес груза
                 DateTime arrivalDate = startDate.AddDays(random.Next(0, 31)); // Прибытие в течение месяца
                 int plannedStayDays = random.Next(6, 14); // Планируемое время стоянки
 

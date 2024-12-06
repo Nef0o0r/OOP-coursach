@@ -5,6 +5,7 @@
         public List<Ship> queue_bulk;
         public List<Ship> queue_liquid;
         public List<Ship> queue_container;
+        private int HoursDuration;
 
         public Queue()
         {
@@ -87,27 +88,65 @@
         }
         // Вывод всех кораблей в очередях
         public void PrintAllShipsInQueue()
-        {
+        {   
             Console.WriteLine("\nBulk Queue:");
             foreach (var ship in queue_bulk)
             {
                 Console.WriteLine($"\nShip: {ship.Name}, Arrival: {ship.ActualArrival}, Expectation: {ship.Expectation}, UnloadingTimeBOM: {ship.UnloadingTimeBOM:F2} " +
-                    $"Left Unloading: {ship.LeftUnloadingTimeBOM}");
+                    $"Left Unloading: {ship.LeftUnloadingTimeBOM:F2}");
             }
 
-            Console.WriteLine("\nLiquid Queue:");
+            Console.WriteLine("Liquid Queue:");
             foreach (var ship in queue_liquid)
             {
                 Console.WriteLine($"\nShip: {ship.Name}, Arrival: {ship.ActualArrival}, Expectation: {ship.Expectation}, UnloadingTimeBOM: {ship.UnloadingTimeBOM:F2} " +
-                    $"Left Unloading: {ship.LeftUnloadingTimeBOM}");
+                    $"Left Unloading: {ship.LeftUnloadingTimeBOM:F2}");
             }
-                Console.WriteLine("\nContainer Queue:");
+                Console.WriteLine("Container Queue:");
                 foreach (var ship in queue_container)
                 {
                     Console.WriteLine($"\nShip: {ship.Name}, Arrival: {ship.ActualArrival}, Expectation: {ship.Expectation}, UnloadingTimeBOM: {ship.UnloadingTimeBOM:F2}, " +
-                        $"Left Unloading: {ship.LeftUnloadingTimeBOM}");
+                        $"Left Unloading: {ship.LeftUnloadingTimeBOM:F2}");
+                }
+        }
+        // Метод для обработки очереди
+        public void ProcessQueue(List<Ship> queue, Port port, Time time, CargoType cargoType)
+        {
+            decimal remainingTime = 24;  // Изначально у нас 24 часа
+
+            foreach (var ship in queue.ToList()) // Преобразуем коллекцию в `ToList()` для безопасной итерации
+            {
+                if (ship.LeftUnloadingTimeBOM <= remainingTime)
+                {
+                    remainingTime -= ship.LeftUnloadingTimeBOM;
+                    //ship.LeftUnloadingTimeBOM = 0;  // Корабль разгрузился
+
+                    Console.WriteLine($"Ship {ship.Name} finished unloading and is removed from queue.");
+                    port.actualShips.Remove(ship);
+                    queue.Remove(ship);
+                    port.servedShips.Add(ship);
+
+                    //Вот тут он доолжен искать не один скорее всего
+                    // Пытаемся найти следующий корабль того же типа
+                    var nextShip = port.actualShips
+                        .FirstOrDefault(s => s.CargoType == cargoType && !IsShipInQueue(s));
+
+                    if (nextShip != null)
+                    {
+                        Console.WriteLine($"Adding new ship {nextShip.Name} to the queue.");
+                        queue.Add(nextShip);
+                        nextShip.LeftUnloadingTimeBOM -= ship.LeftUnloadingTimeBOM;  // Обновляем время разгрузки
+                    }
+                }
+                else
+                {
+                    // Если времени не хватает на текущий корабль, переносим остаток времени на следующий день
+                    ship.LeftUnloadingTimeBOM -= remainingTime;
+                    break;  // Дальше уже нечего разгружать в этот день
                 }
             }
-        
+        }
+
+
     }
 }

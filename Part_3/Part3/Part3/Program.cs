@@ -4,14 +4,14 @@
     {
         static void Main(string[] args)
         {
-            DateTime dateTime = new DateTime(2024, 12, 5, 12, 48, 12);
+            DateTime dateTime = new DateTime(2024, 1, 1);
             Simulation simulation = new Simulation();
             Time time = new Time();
             time.StartTime(dateTime);
             Schedule schedule = new Schedule();
-            Port port= new Port(1,2,3);
+            Port port= new Port(1,1,1);
             // Генерация расписания
-            schedule.GenerateScheduleShip(10, time.Start_Time);
+            schedule.GenerateScheduleShip(100, time.Start_Time);
 
             // Сортировка по дате прибытия идеального расписания
             var sortedByPlannedArrival = schedule.SortByScheduledArrival();
