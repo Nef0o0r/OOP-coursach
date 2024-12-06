@@ -1,4 +1,6 @@
-﻿namespace SeaPort
+﻿using SeaPort.Crane;
+
+namespace SeaPort
 {
     internal class Port
     {
@@ -7,7 +9,20 @@
         public int ContainerCranes { get; set; } //Количество "контейнерных" кранов
 
         public List<Ship> actualShips = new List<Ship>(); //Корабли находящиеся в порту на данный момент
-
+        public Port()
+        {
+            BulkCranes = 0;
+            LiquidCranes = 0;
+            ContainerCranes = 0;
+            actualShips = new List<Ship>();
+        }
+        public Port(int bulk_crane, int liquid_crane, int container_crane)
+        {
+            BulkCranes = bulk_crane;
+            LiquidCranes = liquid_crane;
+            ContainerCranes = container_crane;
+            actualShips = new List<Ship>();
+        }
         // Функция для добавления кораблей с проверкой на совпадение даты ActualArrival
         public void AddActualShipWithTime(DateTime arrivalDate, Schedule schedule)
         {

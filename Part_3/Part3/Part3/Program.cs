@@ -7,7 +7,7 @@
             Simulation simulation = new Simulation();
             Time time = new Time();
             Schedule schedule = new Schedule();
-            Port port= new Port();
+            Port port= new Port(3,3,3);
             // Генерация расписания
             schedule.GenerateScheduleShip(10, time.Start_Time);
 
@@ -17,8 +17,8 @@
             var sortedByActualArrival = schedule.SortByActualArrival();
 
             // Вывод отсортированного идеального расписания
-            Console.WriteLine("Ships sorted by Scheduled Arrival:");
-            schedule.PrintSchedule(sortedByPlannedArrival);
+            //Console.WriteLine("Ships sorted by Scheduled Arrival:");
+            //schedule.PrintSchedule(sortedByPlannedArrival);
 
             Console.WriteLine();
 

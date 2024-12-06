@@ -4,15 +4,15 @@ namespace SeaPort
 {
     internal class Ship : AbstractShip
     {
-        protected decimal UnloadingTime; //Время выгрузки без происшествий
-        protected decimal UnloadingTimeBOM; //Время выгрузки с происшествиями
+        public decimal UnloadingTime { get; private set; } //Время выгрузки без происшествий
+        public decimal UnloadingTimeBOM { get; set; } //Время выгрузки с происшествиями
 
         private Random _random = new Random();
         public DateTime ActualArrival { get; private set; } // Реальное время прибытия
         public DateTime ActualDeparture { get; private set; } // Реальное время отъезда
         public decimal ExtraDelay { get; private set; } // Дополнительная задержка
         public TimeSpan DayInPort { get; set; }
-        public TimeSpan Expectation {  get; private set; } //Время ожидания до разгрузки
+        public TimeSpan Expectation {  get; set; } //Время ожидания до разгрузки
         public Ship(string name, CargoType cargoType, double cargoWeight, DateTime scheduledArrival, int plannedStayDays)
             : base(name, cargoType, cargoWeight, scheduledArrival, plannedStayDays)
         {
@@ -51,6 +51,8 @@ namespace SeaPort
                 default:
                     throw new Exception("Unknown cargo type");
             }
+            UnloadingTimeBOM = ExtraDelay + UnloadingTime;
+            //Console.WriteLine(UnloadingTime);
         }
         // Переопределяем PrintShip, чтобы добавить информацию о времени выгрузки
         public override void PrintShip()
