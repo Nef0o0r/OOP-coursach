@@ -41,5 +41,29 @@
 
             }
         }
+
+        // Функция для удаления корабля из списка по имени
+        public bool RemoveShipInPortByName(string shipName, Time time)
+        {
+            // Найти корабль по имени
+            var shipToRemove = actualShips.FirstOrDefault(ship => ship.Name.Equals(shipName, StringComparison.OrdinalIgnoreCase));
+
+
+
+            if (shipToRemove != null)
+            {
+                shipToRemove.DayInPort = time.Current_Time - shipToRemove.ActualArrival;
+                // Удалить корабль
+                actualShips.Remove(shipToRemove);
+                Console.WriteLine($"Ship '{shipName}' has been removed from the port.");
+                Console.WriteLine($"Day in Port: {shipToRemove.DayInPort}");
+                return true; // Успешно удален
+            }
+            else
+            {
+                Console.WriteLine($"Ship '{shipName}' not found in the port.");
+                return false; // Не найден
+            }
+        }
     }
 }

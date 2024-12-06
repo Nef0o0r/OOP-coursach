@@ -4,6 +4,7 @@
     {
         static void Main(string[] args)
         {
+            Simulation simulation = new Simulation();
             Time time = new Time();
             Schedule schedule = new Schedule();
             Port port= new Port();
@@ -25,14 +26,8 @@
             Console.WriteLine("Ships sorted by Scheduled Really Arrival:");
             schedule.PrintScheduleReally(sortedByActualArrival);
 
-            for (int day = 0; day < 31; day++)
-            {   
-                time.Current_Time = time.Start_Time.AddDays(day);
-                Console.WriteLine($"Day: {time.Current_Time}");
-
-                port.AddActualShipWithTime(time.Current_Time, schedule);  // Моделируем один день
-                port.PrintActualShips();
-            }
+            // Запуск симуляции
+            simulation.SimulateDays(31, time, port, schedule);
         }
     }
 }
