@@ -12,12 +12,12 @@ namespace SeaPort
         public DateTime ActualDeparture { get; private set; } // Реальное время отъезда
         public decimal ExtraDelay { get; private set; } // Дополнительная задержка
         public TimeSpan DayInPort { get; set; }
-
+        public TimeSpan Expectation {  get; private set; } //Время ожидания до разгрузки
         public Ship(string name, CargoType cargoType, double cargoWeight, DateTime scheduledArrival, int plannedStayDays)
             : base(name, cargoType, cargoWeight, scheduledArrival, plannedStayDays)
         {
             DayInPort = TimeSpan.Zero;
-
+            Expectation = TimeSpan.Zero;
             // Рассчитываем случайные отклонения и задержки
             int arrivalDeviationDays; // Отклонение от расписания прибытия (-2 до +9 дней)
             int delayDeviationDays; // Задержка выгрузки (0-5 часов)
