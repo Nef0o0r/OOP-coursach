@@ -4,10 +4,12 @@
     {
         static void Main(string[] args)
         {
+            DateTime dateTime = new DateTime(2024, 12, 5, 12, 48, 12);
             Simulation simulation = new Simulation();
             Time time = new Time();
+            time.StartTime(dateTime);
             Schedule schedule = new Schedule();
-            Port port= new Port(3,3,3);
+            Port port= new Port(1,2,3);
             // Генерация расписания
             schedule.GenerateScheduleShip(10, time.Start_Time);
 

@@ -5,6 +5,7 @@
         private int QuantityBulkCrane;//Количество контейнеров Сыпучих
         private int QuantityLinquidCrane;
         private int QuantityContainerCrane;
+        private int HoursDuration;
 
         Queue queue = new Queue();
         public void SimulateDays(int durationInDays, Time time, Port port, Schedule schedule)
@@ -12,6 +13,7 @@
             QuantityBulkCrane = port.BulkCranes;
             QuantityLinquidCrane = port.LiquidCranes;
             QuantityContainerCrane = port.ContainerCranes;
+            HoursDuration = 24;
 
             for (int day = 0; day < durationInDays; day++)
             {
@@ -20,7 +22,7 @@
                 {
                     foreach (var ship in port.actualShips) {
                         if ((ship.CargoType == CargoType.Bulk) && (queue.queue_bulk.Count < QuantityBulkCrane) && !queue.IsShipInQueue(ship)) queue.AddQueu(ship, time);
-                        if ((ship.CargoType == CargoType.Liquid) && (queue.queue_container.Count < QuantityLinquidCrane) && !queue.IsShipInQueue(ship)) queue.AddQueu(ship, time);
+                        if ((ship.CargoType == CargoType.Liquid) && (queue.queue_liquid.Count < QuantityLinquidCrane) && !queue.IsShipInQueue(ship)) queue.AddQueu(ship, time);
                         if ((ship.CargoType == CargoType.Container) && (queue.queue_container.Count < QuantityContainerCrane) && !queue.IsShipInQueue(ship)) queue.AddQueu(ship, time);
                         //Console.WriteLine($"\n\nUnloadTime: {ship.ExtraDelay}\n\n");
                     }
@@ -30,8 +32,11 @@
                 port.AddActualShipWithTime(time.Current_Time, schedule); // Моделируем один день
                 //port.PrintActualShips();
                 queue.PrintAllShipsInQueue();
+                foreach (var ship in queue.queue_bulk) ship.LeftUnloadingTimeBOM -= HoursDuration;
+                foreach (var ship in queue.queue_liquid) ship.LeftUnloadingTimeBOM -= HoursDuration;
+                foreach (var ship in queue.queue_bulk) ship.LeftUnloadingTimeBOM -= HoursDuration;
             }
-            port.RemoveShipInPortByName("Ship1", time);
+            //port.RemoveShipInPortByName("Ship1", time);
         }
     }
 }

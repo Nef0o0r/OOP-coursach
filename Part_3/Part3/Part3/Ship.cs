@@ -13,6 +13,8 @@ namespace SeaPort
         public decimal ExtraDelay { get; private set; } // Дополнительная задержка
         public TimeSpan DayInPort { get; set; }
         public TimeSpan Expectation {  get; set; } //Время ожидания до разгрузки
+
+        public decimal LeftUnloadingTimeBOM { get; set; }
         public Ship(string name, CargoType cargoType, double cargoWeight, DateTime scheduledArrival, int plannedStayDays)
             : base(name, cargoType, cargoWeight, scheduledArrival, plannedStayDays)
         {
@@ -34,6 +36,8 @@ namespace SeaPort
             ActualArrival = scheduledArrival.AddDays(arrivalDeviationDays);
             ExtraDelay = delayDeviationDays;
 
+
+
             switch (cargoType)
             {
                 case CargoType.Bulk:
@@ -52,6 +56,7 @@ namespace SeaPort
                     throw new Exception("Unknown cargo type");
             }
             UnloadingTimeBOM = ExtraDelay + UnloadingTime;
+            LeftUnloadingTimeBOM = UnloadingTimeBOM;
             //Console.WriteLine(UnloadingTime);
         }
         // Переопределяем PrintShip, чтобы добавить информацию о времени выгрузки

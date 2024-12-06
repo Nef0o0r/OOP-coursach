@@ -91,20 +91,23 @@
             Console.WriteLine("\nBulk Queue:");
             foreach (var ship in queue_bulk)
             {
-                Console.WriteLine($"\nShip: {ship.Name}, Arrival: {ship.ActualArrival}, Expectation: {ship.Expectation}, UnloadingTimeBOM: {ship.UnloadingTimeBOM:F2}");
+                Console.WriteLine($"\nShip: {ship.Name}, Arrival: {ship.ActualArrival}, Expectation: {ship.Expectation}, UnloadingTimeBOM: {ship.UnloadingTimeBOM:F2} " +
+                    $"Left Unloading: {ship.LeftUnloadingTimeBOM}");
             }
 
             Console.WriteLine("\nLiquid Queue:");
             foreach (var ship in queue_liquid)
             {
-                Console.WriteLine($"\nShip: {ship.Name}, Arrival: {ship.ActualArrival}, Expectation: {ship.Expectation}, UnloadingTimeBOM: {ship.UnloadingTimeBOM:F2}");
+                Console.WriteLine($"\nShip: {ship.Name}, Arrival: {ship.ActualArrival}, Expectation: {ship.Expectation}, UnloadingTimeBOM: {ship.UnloadingTimeBOM:F2} " +
+                    $"Left Unloading: {ship.LeftUnloadingTimeBOM}");
             }
-
-            Console.WriteLine("\nContainer Queue:");
-            foreach (var ship in queue_container)
-            {
-                Console.WriteLine($"\nShip: {ship.Name}, Arrival: {ship.ActualArrival}, Expectation: {ship.Expectation}, UnloadingTimeBOM: {ship.UnloadingTimeBOM:F2}");
+                Console.WriteLine("\nContainer Queue:");
+                foreach (var ship in queue_container)
+                {
+                    Console.WriteLine($"\nShip: {ship.Name}, Arrival: {ship.ActualArrival}, Expectation: {ship.Expectation}, UnloadingTimeBOM: {ship.UnloadingTimeBOM:F2}, " +
+                        $"Left Unloading: {ship.LeftUnloadingTimeBOM}");
+                }
             }
-        }
+        
     }
 }
