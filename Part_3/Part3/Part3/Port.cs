@@ -12,8 +12,11 @@ namespace SeaPort
 
         public List<Ship> servedShips = new List<Ship>();
 
+        public ulong FullFine { get; set; }
+
         public Port()
         {
+            FullFine = 0;
             BulkCranes = 0;
             LiquidCranes = 0;
             ContainerCranes = 0;
@@ -21,6 +24,7 @@ namespace SeaPort
         }
         public Port(int bulk_crane, int liquid_crane, int container_crane)
         {
+            FullFine = 0;
             BulkCranes = bulk_crane;
             LiquidCranes = liquid_crane;
             ContainerCranes = container_crane;
@@ -72,17 +76,35 @@ namespace SeaPort
 
             if (shipToRemove != null)
             {
-                shipToRemove.DayInPort = time.Current_Time - shipToRemove.ActualArrival;
-                // Удалить корабль
                 actualShips.Remove(shipToRemove);
                 Console.WriteLine($"Ship '{shipName}' has been removed from the port.");
-                Console.WriteLine($"Day in Port: {shipToRemove.DayInPort}");
                 return true; // Успешно удален
             }
             else
             {
                 Console.WriteLine($"Ship '{shipName}' not found in the port.");
                 return false; // Не найден
+            }
+        }
+        // Функция для вывода списка обслуженных кораблей
+        public void PrintServedShips()
+        {
+            if (servedShips.Count == 0)
+            {
+                Console.WriteLine("\n----------------------------------");
+                Console.WriteLine("~ No served ships yet! ~");
+                Console.WriteLine("----------------------------------");
+            }
+            else
+            {
+                Console.WriteLine("\n--------------");
+                Console.WriteLine("Served Ships:");
+                Console.WriteLine("--------------");
+                foreach (var ship in servedShips)
+                {
+                    Console.WriteLine($"Ship Name: {ship.Name}, Arrival Date: {ship.ActualArrival.ToShortDateString()}, Cargo Type: {ship.CargoType}, Expactation: {ship.Expectation:dd\\:hh\\:mm\\:ss}, "+
+                        $"DelayInPort: {ship.DelayInPort.Days}");
+                }
             }
         }
     }

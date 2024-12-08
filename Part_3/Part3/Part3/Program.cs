@@ -4,13 +4,13 @@
     {
         static void Main(string[] args)
         {
-
+            ulong QueneTime;
             DateTime dateTime = new DateTime(2024, 1, 1);
             Simulation simulation = new Simulation();
             Time time = new Time();
             time.StartTime(dateTime);
             Schedule schedule = new Schedule();
-            Port port= new Port(1,1,1);
+            Port port= new Port(10,10,50);
             // Генерация расписания
             schedule.GenerateScheduleShip(100, time.Start_Time);
             
@@ -30,9 +30,22 @@
             // Вывод отсортированного реального расписания
             //Console.WriteLine("Ships sorted by Scheduled Really Arrival:");
             //schedule.PrintScheduleReally(sortedByActualArrival);
-
             // Запуск симуляции
-            simulation.SimulateDays(31, time, port, schedule);
+            simulation.SimulateDays(365, time, port, schedule);
+            port.PrintServedShips();
+            Console.WriteLine();
+
+            Console.WriteLine($"Общая суммма штрафа: {port.FullFine}");
+            Console.WriteLine($"Число разгруженных судов: {port.servedShips.Count}");
+            QueneTime = 0;
+            foreach (var ship in port.actualShips.Concat(port.servedShips))
+            {
+                QueneTime += (ulong)ship.Expectation.TotalMinutes;
+            }
+            QueneTime /= (ulong)(port.actualShips.Count + port.servedShips.Count);
+            Console.WriteLine($"Среднее время ожидания в очереди в минутах: {QueneTime} (в часах пирмерно {(decimal)QueneTime / 60 :F2})");
+            var maxExpectation = port.actualShips.Concat(port.servedShips).Max(ship => ship.Expectation.TotalHours);
+            Console.WriteLine($"Максимальное время ожидания в часах: {maxExpectation:F2} (в днях примерно = {maxExpectation/24:F2})");
         }
     }
 }

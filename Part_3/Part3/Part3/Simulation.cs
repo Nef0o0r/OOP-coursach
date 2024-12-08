@@ -5,6 +5,7 @@
         private int QuantityBulkCrane;//Количество контейнеров Сыпучих
         private int QuantityLinquidCrane;
         private int QuantityContainerCrane;
+        public ulong Fine = 2000;
 
 
         Queue queue = new Queue();
@@ -43,7 +44,14 @@
                 queue.ProcessQueue(queue.queue_liquid, port, time, CargoType.Liquid);
                 queue.ProcessQueue(queue.queue_container, port, time, CargoType.Container);
             }
-            //port.RemoveShipInPortByName("Ship1", time);
+            foreach (var ship in port.actualShips) {
+                port.FullFine += Fine * (ulong)Math.Ceiling(ship.Expectation.TotalMinutes / 3600);
+            }
+            foreach (var ship in port.servedShips)
+            {
+                port.FullFine += Fine * (ulong)ship.DelayInPort.TotalDays;
+            }
+            
         }
     }
 }

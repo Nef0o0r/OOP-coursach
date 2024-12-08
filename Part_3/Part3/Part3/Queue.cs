@@ -1,4 +1,6 @@
-﻿namespace SeaPort
+﻿using System.Reflection;
+
+namespace SeaPort
 {
     internal class Queue
     {
@@ -163,7 +165,14 @@
                     Console.WriteLine($"Ship {ship.Name} finished unloading and is removed from queue.");
                     port.actualShips.Remove(ship);
                     queue.Remove(ship);
+
+                    if (time.Current_Time - ship.ActualArrival - TimeSpan.FromDays(ship.PlannedStayDays) > TimeSpan.Zero)
+                    {
+                        ship.DelayInPort = time.Current_Time - ship.ActualArrival - TimeSpan.FromDays(ship.PlannedStayDays);
+                    }
+                    else { ship.DelayInPort = TimeSpan.Zero; }
                     port.servedShips.Add(ship);//Разгруженные корабли
+                    
                    
                     do
                     {
@@ -189,6 +198,12 @@
                                 Console.WriteLine($"Ship {ship.Name} finished unloading and is removed from queue.");
                                 port.actualShips.Remove(nextShip);
                                 queue.Remove(nextShip);
+                                if(time.Current_Time - nextShip.ActualArrival - TimeSpan.FromDays(nextShip.PlannedStayDays) > TimeSpan.Zero)
+                                {
+                                    nextShip.DelayInPort = time.Current_Time - nextShip.ActualArrival - TimeSpan.FromDays(nextShip.PlannedStayDays);
+                                }
+                                else { nextShip.DelayInPort = TimeSpan.Zero; }
+                                
                                 port.servedShips.Add(nextShip);
                             }
                         }
