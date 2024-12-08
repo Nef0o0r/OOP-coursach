@@ -100,10 +100,13 @@ namespace SeaPort
                 Console.WriteLine("\n--------------");
                 Console.WriteLine("Served Ships:");
                 Console.WriteLine("--------------");
+                Console.WriteLine("\n_____________________________________________________________________________________________");
+                Console.WriteLine($"|  Ship Name  |   Arrival Date   |    Cargo Type    |    Expactation    |  DelayInPort(day) |");
+                Console.WriteLine("---------------------------------------------------------------------------------------------");
                 foreach (var ship in servedShips)
                 {
-                    Console.WriteLine($"Ship Name: {ship.Name}, Arrival Date: {ship.ActualArrival.ToShortDateString()}, Cargo Type: {ship.CargoType}, Expactation: {ship.Expectation:dd\\:hh\\:mm\\:ss}, "+
-                        $"DelayInPort: {ship.DelayInPort.Days}");
+                    Console.WriteLine($"|   {ship.Name}     |   {ship.ActualArrival.ToShortDateString()}    |      {ship.CargoType}       |     {ship.Expectation:dd\\:hh\\:mm\\:ss}    |        {ship.DelayInPort.Days}        |");
+                    Console.WriteLine("---------------------------------------------------------------------------------------------");
                 }
             }
         }
@@ -128,12 +131,15 @@ namespace SeaPort
                     writer.WriteLine("\n--------------");
                     writer.WriteLine("Served Ships:");
                     writer.WriteLine("--------------");
+                    writer.WriteLine("\n_____________________________________________________________________________________________");
+                    writer.WriteLine($"|  Ship Name  |   Arrival Date   |    Cargo Type    |    Expactation    |  DelayInPort(day) |");
+                    writer.WriteLine("---------------------------------------------------------------------------------------------");
+
 
                     foreach (var ship in servedShips)
                     {
-                        writer.WriteLine($"Ship Name: {ship.Name}, Arrival Date: {ship.ActualArrival.ToShortDateString()}, " +
-                            $"Cargo Type: {ship.CargoType}, Expectation: {ship.Expectation:dd\\:hh\\:mm\\:ss}, " +
-                            $"DelayInPort: {ship.DelayInPort.Days} days");
+                        writer.WriteLine($"|   {ship.Name}     |   {ship.ActualArrival.ToShortDateString()}    |      {ship.CargoType}       |     {ship.Expectation:dd\\:hh\\:mm\\:ss}    |        {ship.DelayInPort.Days}        |");
+                        writer.WriteLine("---------------------------------------------------------------------------------------------");
                     }
                 }
                 Console.WriteLine($"Served ships information successfully written to {fileName}");
