@@ -29,15 +29,13 @@ namespace SeaPort
             {
                 hashTable.Add(cargo, 0);
             }
-            //hashTable[CargoType.Liquid] += 2;
-
-            PrintCargoQuene();
-
+            Console.WriteLine("\n////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////");
+            //Console.WriteLine("\n------------------------------------------------------------------------------------------------------------------------------------------------------------");
             for (int day = 0; day < durationInDays; day++)
             {
                 time.Current_Time = time.Start_Time.AddDays(day);
                 port.AddActualShipWithTime(time.Current_Time, schedule);
-                Console.WriteLine("\n=============================");
+                Console.WriteLine("=============================");
                 Console.WriteLine($"|| Day: {time.Current_Time} ||");
                 Console.WriteLine("=============================\n");
                 if (port.actualShips.Count > 0)
@@ -59,11 +57,13 @@ namespace SeaPort
                     queue.PrintAllShipsInQueue();
                 }
 
-
+                Console.WriteLine("\n**********************************************************************************************\n");
                 // Обработка списков с учетом LeftUnloadingTimeBOM
                 queue.ProcessQueue(queue.queue_bulk, port, time, CargoType.Bulk);
                 queue.ProcessQueue(queue.queue_liquid, port, time, CargoType.Liquid);
                 queue.ProcessQueue(queue.queue_container, port, time, CargoType.Container);
+                Console.WriteLine("\n////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////\n");
+                //Console.WriteLine("------------------------------------------------------------------------------------------------------------------------------------------------------------");
             }
             foreach (var ship in port.actualShips) {
                 port.FullFine += Fine * (ulong)Math.Ceiling(ship.Expectation.TotalMinutes / 3600);

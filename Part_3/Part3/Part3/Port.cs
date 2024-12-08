@@ -107,6 +107,38 @@ namespace SeaPort
                 }
             }
         }
+
+        public void PrintServedShipsToFile(string fileName)
+        {
+            // Проверка на наличие разгруженных судов
+            if (servedShips.Count == 0)
+            {
+                using (StreamWriter writer = new StreamWriter(fileName, false))
+                {
+                    writer.WriteLine("\n----------------------------------");
+                    writer.WriteLine("~ No served ships yet! ~");
+                    writer.WriteLine("----------------------------------");
+                }
+                Console.WriteLine("No served ships yet. Information written to file.");
+            }
+            else
+            {
+                using (StreamWriter writer = new StreamWriter(fileName, false))
+                {
+                    writer.WriteLine("\n--------------");
+                    writer.WriteLine("Served Ships:");
+                    writer.WriteLine("--------------");
+
+                    foreach (var ship in servedShips)
+                    {
+                        writer.WriteLine($"Ship Name: {ship.Name}, Arrival Date: {ship.ActualArrival.ToShortDateString()}, " +
+                            $"Cargo Type: {ship.CargoType}, Expectation: {ship.Expectation:dd\\:hh\\:mm\\:ss}, " +
+                            $"DelayInPort: {ship.DelayInPort.Days} days");
+                    }
+                }
+                Console.WriteLine($"Served ships information successfully written to {fileName}");
+            }
+        }
         public int GetShipCountInPort(CargoType cargoType)
         {
             return actualShips.Count(ship => ship.CargoType == cargoType);

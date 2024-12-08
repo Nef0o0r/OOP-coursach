@@ -86,6 +86,34 @@ namespace SeaPort
                                  $"Departure Date: {ship.DepartureDate:dd-MM-yyyy}");*/
             }
         }
+        public void PrintScheduleToFile(string fileName, List<Ship> ships)
+        {
+            // Проверяем, есть ли корабли
+            if (ships == null || ships.Count == 0)
+            {
+                Console.WriteLine("No ships to display.");
+                return;
+            }
+
+            // Открываем файл для записи
+            using (StreamWriter writer = new StreamWriter(fileName, false))
+            {
+                writer.WriteLine("\n++++++++++++++++++++++");
+                writer.WriteLine("+ Schedule of Ships: +");
+                writer.WriteLine("++++++++++++++++++++++\n");
+                writer.WriteLine("\n______________________________________________________________________________________________________________");
+                writer.WriteLine("|   Name   | CargoType | CargoWeight (kg) | Scheduled Arrival | Planned Stay (days) |     Departure Date     |");
+                writer.WriteLine("--------------------------------------------------------------------------------------------------------------");
+
+                foreach (var ship in ships)
+                {
+                    writer.WriteLine($"|  {ship.Name,-8} |   {ship.CargoType,-8} |      {ship.CargoWeight,-14} |  {ship.ScheduledArrival:dd-MM-yyyy,-15}  |       {ship.PlannedStayDays,-10}        |      {ship.DepartureDate:dd-MM-yyyy,-15}     |");
+                    writer.WriteLine("--------------------------------------------------------------------------------------------------------------");
+                }
+            }
+
+            Console.WriteLine($"Schedule successfully written to {fileName}");
+        }
 
         public void PrintScheduleReally(List<Ship> ships)
         {

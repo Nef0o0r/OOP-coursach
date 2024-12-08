@@ -154,7 +154,6 @@ namespace SeaPort
         {
             decimal remainingTime = 24;  // Изначально у нас 24 часа
             //decimal tmp; //Переменная для переноса времени
-
             foreach (var ship in queue.ToList()) // Преобразуем коллекцию в `ToList()` для безопасной итерации
             {
                 if (ship.LeftUnloadingTimeBOM <= remainingTime)
@@ -185,7 +184,7 @@ namespace SeaPort
                             TimeSpan remainingTimes = TimeSpan.FromHours((double)remainingTime);
                             nextShip.Expectation = time.Current_Time - ship.ActualArrival - remainingTimes;
 
-                            Console.WriteLine($"\nShip: {nextShip.Name}, Arrival: {nextShip.ActualArrival}, Expectation: {nextShip.Expectation:dd\\:hh\\:mm\\:ss}, UnloadingTimeBOM: {nextShip.UnloadingTimeBOM:F2}");
+                            Console.WriteLine($"Ship: {nextShip.Name}, Arrival: {nextShip.ActualArrival}, Expectation: {nextShip.Expectation:dd\\:hh\\:mm\\:ss}, UnloadingTimeBOM: {nextShip.UnloadingTimeBOM:F2}");
                             if (nextShip.LeftUnloadingTimeBOM - remainingTime > 0)
                             {
                                 nextShip.LeftUnloadingTimeBOM -= remainingTime;
