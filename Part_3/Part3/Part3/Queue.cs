@@ -19,15 +19,15 @@
             {
                 case CargoType.Bulk:
                     queue_bulk.Add(ship);
-                    ship.Expectation = time.Current_Time - ship.ActualArrival.AddDays(1);
+                    ship.Expectation = time.Current_Time - ship.ActualArrival;
                     break;
                 case CargoType.Liquid:
                     queue_liquid.Add(ship);
-                    ship.Expectation = time.Current_Time - ship.ActualArrival.AddDays(1);
+                    ship.Expectation = time.Current_Time - ship.ActualArrival;
                     break;
                 case CargoType.Container:
                     queue_container.Add(ship);
-                    ship.Expectation = time.Current_Time - ship.ActualArrival.AddDays(1);
+                    ship.Expectation = time.Current_Time - ship.ActualArrival;
                     break;
                 default:
                     Console.WriteLine("Unknown Cargotype (AddQueue)");
@@ -88,55 +88,112 @@
         }
         // Вывод всех кораблей в очередях
         public void PrintAllShipsInQueue()
-        {   
-            Console.WriteLine("\nBulk Queue:");
-            foreach (var ship in queue_bulk)
+        {
+            if (queue_bulk.Count > 0)
             {
-                Console.WriteLine($"\nShip: {ship.Name}, Arrival: {ship.ActualArrival}, Expectation: {ship.Expectation}, UnloadingTimeBOM: {ship.UnloadingTimeBOM:F2} " +
-                    $"Left Unloading: {ship.LeftUnloadingTimeBOM:F2}");
-            }
-
-            Console.WriteLine("Liquid Queue:");
-            foreach (var ship in queue_liquid)
-            {
-                Console.WriteLine($"\nShip: {ship.Name}, Arrival: {ship.ActualArrival}, Expectation: {ship.Expectation}, UnloadingTimeBOM: {ship.UnloadingTimeBOM:F2} " +
-                    $"Left Unloading: {ship.LeftUnloadingTimeBOM:F2}");
-            }
-                Console.WriteLine("Container Queue:");
-                foreach (var ship in queue_container)
+                Console.WriteLine("\n -------------");
+                Console.WriteLine("| Bulk Queue: |");
+                Console.WriteLine(" -------------\n");
+                foreach (var ship in queue_bulk)
                 {
-                    Console.WriteLine($"\nShip: {ship.Name}, Arrival: {ship.ActualArrival}, Expectation: {ship.Expectation}, UnloadingTimeBOM: {ship.UnloadingTimeBOM:F2}, " +
+                    Console.WriteLine($"Ship: {ship.Name}, Arrival: {ship.ActualArrival}, Expectation: {ship.Expectation:dd\\:hh\\:mm\\:ss}, UnloadingTimeBOM: {ship.UnloadingTimeBOM:F2} " +
                         $"Left Unloading: {ship.LeftUnloadingTimeBOM:F2}");
                 }
+                Console.WriteLine();
+            }
+            else
+            {
+                Console.WriteLine("\n -------------");
+                Console.WriteLine("| Bulk Queue: |  IS EMPTY!");
+                Console.WriteLine(" -------------");
+            }
+            if (queue_liquid.Count > 0)
+            {
+                Console.WriteLine("\n ---------------");
+                Console.WriteLine("| Liquid Queue: |");
+                Console.WriteLine(" ---------------\n");
+                foreach (var ship in queue_liquid)
+                {
+                    Console.WriteLine($"Ship: {ship.Name}, Arrival: {ship.ActualArrival}, Expectation: {ship.Expectation:dd\\:hh\\:mm\\:ss}, UnloadingTimeBOM: {ship.UnloadingTimeBOM:F2} " +
+                        $"Left Unloading: {ship.LeftUnloadingTimeBOM:F2}");
+                }
+                Console.WriteLine();
+            }
+            else
+            {
+                Console.WriteLine(" ---------------");
+                Console.WriteLine("| Liquid Queue: |  IS EMPTY!");
+                Console.WriteLine(" ---------------");
+            }
+            if (queue_container.Count > 0)
+            {
+                Console.WriteLine(" ------------------");
+                Console.WriteLine("| Container Queue: |");
+                Console.WriteLine(" ------------------\n");
+                foreach (var ship in queue_container)
+                {
+                    Console.WriteLine($"Ship: {ship.Name}, Arrival: {ship.ActualArrival}, Expectation: {ship.Expectation:dd\\:hh\\:mm\\:ss}, UnloadingTimeBOM: {ship.UnloadingTimeBOM:F2}, " +
+                        $"Left Unloading: {ship.LeftUnloadingTimeBOM:F2}");
+                }
+            }
+            else
+            {
+                Console.WriteLine(" ------------------");
+                Console.WriteLine("| Container Queue: | IS EMPTY!");
+                Console.WriteLine(" ------------------");
+                Console.WriteLine();
+            }
+
+
         }
+        
         // Метод для обработки очереди
         public void ProcessQueue(List<Ship> queue, Port port, Time time, CargoType cargoType)
         {
             decimal remainingTime = 24;  // Изначально у нас 24 часа
+            //decimal tmp; //Переменная для переноса времени
 
             foreach (var ship in queue.ToList()) // Преобразуем коллекцию в `ToList()` для безопасной итерации
             {
                 if (ship.LeftUnloadingTimeBOM <= remainingTime)
                 {
                     remainingTime -= ship.LeftUnloadingTimeBOM;
-                    //ship.LeftUnloadingTimeBOM = 0;  // Корабль разгрузился
+                    ship.LeftUnloadingTimeBOM = 0;  // Корабль разгрузился
 
                     Console.WriteLine($"Ship {ship.Name} finished unloading and is removed from queue.");
                     port.actualShips.Remove(ship);
                     queue.Remove(ship);
-                    port.servedShips.Add(ship);
-
-                    //Вот тут он доолжен искать не один скорее всего
-                    // Пытаемся найти следующий корабль того же типа
-                    var nextShip = port.actualShips
-                        .FirstOrDefault(s => s.CargoType == cargoType && !IsShipInQueue(s));
-
-                    if (nextShip != null)
+                    port.servedShips.Add(ship);//Разгруженные корабли
+                   
+                    do
                     {
-                        Console.WriteLine($"Adding new ship {nextShip.Name} to the queue.");
-                        queue.Add(nextShip);
-                        nextShip.LeftUnloadingTimeBOM -= ship.LeftUnloadingTimeBOM;  // Обновляем время разгрузки
-                    }
+                        var nextShip = port.actualShips
+                        .FirstOrDefault(s => s.CargoType == cargoType && !IsShipInQueue(s));
+                        if (nextShip != null)
+                        {
+                            Console.WriteLine($"Adding new ship {nextShip.Name} to the queue.");
+                            queue.Add(nextShip);
+                            TimeSpan remainingTimes = TimeSpan.FromHours((double)remainingTime);
+                            nextShip.Expectation = time.Current_Time - ship.ActualArrival - remainingTimes;
+
+                            Console.WriteLine($"\nShip: {nextShip.Name}, Arrival: {nextShip.ActualArrival}, Expectation: {nextShip.Expectation:dd\\:hh\\:mm\\:ss}, UnloadingTimeBOM: {nextShip.UnloadingTimeBOM:F2}");
+                            if (nextShip.LeftUnloadingTimeBOM - remainingTime > 0)
+                            {
+                                nextShip.LeftUnloadingTimeBOM -= remainingTime;
+                                break;
+                            }
+                            else
+                            {
+                                remainingTime -= nextShip.LeftUnloadingTimeBOM;
+                                nextShip.LeftUnloadingTimeBOM = 0;
+                                Console.WriteLine($"Ship {ship.Name} finished unloading and is removed from queue.");
+                                port.actualShips.Remove(nextShip);
+                                queue.Remove(nextShip);
+                                port.servedShips.Add(nextShip);
+                            }
+                        }
+                        else break;
+                    } while (remainingTime > 0);
                 }
                 else
                 {
@@ -147,6 +204,10 @@
             }
         }
 
+        public bool IsAnyShipInQueue()
+        {
+            return queue_bulk.Count > 0 || queue_liquid.Count > 0 || queue_container.Count > 0;
+        }
 
     }
 }

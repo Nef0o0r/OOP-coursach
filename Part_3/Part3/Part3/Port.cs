@@ -45,13 +45,15 @@ namespace SeaPort
         // Функция для вывода списка судов, которые находятся в порту
         public void PrintActualShips()
         {
-            Console.WriteLine("Ships currently in port:");
             if (actualShips.Count == 0)
             {
-                Console.WriteLine("No ships in port.");
+                Console.WriteLine("~ Ships currently in port: No ships in port! ~");
+                Console.WriteLine("----------------------------------------------");
             }
             else
             {
+                Console.WriteLine("Ships currently in port:");
+                Console.WriteLine("------------------------");
                 foreach (var ship in actualShips)
                 {
                     Console.WriteLine($"Ship Name: {ship.Name}, Arrival Date: {ship.ActualArrival.ToShortDateString()}, Cargo Type: {ship.CargoType}");

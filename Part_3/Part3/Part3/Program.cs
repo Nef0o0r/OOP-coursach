@@ -4,6 +4,7 @@
     {
         static void Main(string[] args)
         {
+
             DateTime dateTime = new DateTime(2024, 1, 1);
             Simulation simulation = new Simulation();
             Time time = new Time();
@@ -12,6 +13,8 @@
             Port port= new Port(1,1,1);
             // Генерация расписания
             schedule.GenerateScheduleShip(100, time.Start_Time);
+            
+            //schedule.Otladka();
 
             // Сортировка по дате прибытия идеального расписания
             var sortedByPlannedArrival = schedule.SortByScheduledArrival();
@@ -20,13 +23,13 @@
 
             // Вывод отсортированного идеального расписания
             //Console.WriteLine("Ships sorted by Scheduled Arrival:");
-            //schedule.PrintSchedule(sortedByPlannedArrival);
+            schedule.PrintSchedule(sortedByPlannedArrival);
 
             Console.WriteLine();
 
             // Вывод отсортированного реального расписания
-            Console.WriteLine("Ships sorted by Scheduled Really Arrival:");
-            schedule.PrintScheduleReally(sortedByActualArrival);
+            //Console.WriteLine("Ships sorted by Scheduled Really Arrival:");
+            //schedule.PrintScheduleReally(sortedByActualArrival);
 
             // Запуск симуляции
             simulation.SimulateDays(31, time, port, schedule);
