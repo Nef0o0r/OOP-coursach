@@ -1,4 +1,6 @@
-﻿namespace SeaPort
+﻿using System.Collections;
+
+namespace SeaPort
 {
     internal class Simulation
     {
@@ -6,15 +8,30 @@
         private int QuantityLinquidCrane;
         private int QuantityContainerCrane;
         public ulong Fine = 2000;
-
+        public Dictionary<CargoType, decimal> hashTable = new Dictionary<CargoType, decimal>();
 
         Queue queue = new Queue();
+        
+        private void PrintCargoQuene()
+        {
+            foreach (var entry in hashTable)
+            {
+                Console.WriteLine($"{entry.Key}: {entry.Value}");
+            }
+        }
         public void SimulateDays(int durationInDays, Time time, Port port, Schedule schedule)
         {
             QuantityBulkCrane = port.BulkCranes;
             QuantityLinquidCrane = port.LiquidCranes;
             QuantityContainerCrane = port.ContainerCranes;
-            //HoursDuration = 24;
+
+            foreach (CargoType cargo in Enum.GetValues(typeof(CargoType)))
+            {
+                hashTable.Add(cargo, 0);
+            }
+            //hashTable[CargoType.Liquid] += 2;
+
+            PrintCargoQuene();
 
             for (int day = 0; day < durationInDays; day++)
             {
@@ -24,7 +41,11 @@
                 Console.WriteLine($"|| Day: {time.Current_Time} ||");
                 Console.WriteLine("=============================\n");
                 if (port.actualShips.Count > 0)
-                { 
+                {
+                    foreach (CargoType cargo in Enum.GetValues(typeof(CargoType)))
+                    {
+                        hashTable[cargo] += (ulong)port.GetShipCountInPort(cargo) - queue.GetShipCountInQueueReflection(cargo);
+                    }
                     foreach (var ship in port.actualShips) {
                         if ((ship.CargoType == CargoType.Bulk) && (queue.queue_bulk.Count < QuantityBulkCrane) && !queue.IsShipInQueue(ship)) queue.AddQueu(ship, time);
                         if ((ship.CargoType == CargoType.Liquid) && (queue.queue_liquid.Count < QuantityLinquidCrane) && !queue.IsShipInQueue(ship)) queue.AddQueu(ship, time);
@@ -51,7 +72,11 @@
             {
                 port.FullFine += Fine * (ulong)ship.DelayInPort.TotalDays;
             }
-            
+            foreach (CargoType cargo in Enum.GetValues(typeof(CargoType)))
+            {
+                hashTable[cargo] /= (decimal)durationInDays;
+            }
+
         }
     }
 }

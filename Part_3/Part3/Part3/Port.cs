@@ -107,5 +107,9 @@ namespace SeaPort
                 }
             }
         }
+        public int GetShipCountInPort(CargoType cargoType)
+        {
+            return actualShips.Count(ship => ship.CargoType == cargoType);
+        }
     }
 }

@@ -223,6 +223,19 @@ namespace SeaPort
         {
             return queue_bulk.Count > 0 || queue_liquid.Count > 0 || queue_container.Count > 0;
         }
+        public ulong GetShipCountInQueueReflection(CargoType cargoType)
+        {
+            string fieldName = $"queue_{cargoType.ToString().ToLower()}";
+            var field = GetType().GetField(fieldName);
 
+            if (field != null && field.GetValue(this) is List<Ship> queue)
+            {
+                return (ulong)queue.Count;
+            }
+            else
+            {
+                throw new ArgumentException("Unknown CargoType or queue not found");
+            }
+        }
     }
 }

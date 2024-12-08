@@ -10,11 +10,11 @@
             Time time = new Time();
             time.StartTime(dateTime);
             Schedule schedule = new Schedule();
-            Port port= new Port(10,10,50);
+            Port port= new Port(1,1,1);
             // Генерация расписания
-            schedule.GenerateScheduleShip(100, time.Start_Time);
+            //schedule.GenerateScheduleShip(100, time.Start_Time);
             
-            //schedule.Otladka();
+            schedule.Otladka();
 
             // Сортировка по дате прибытия идеального расписания
             var sortedByPlannedArrival = schedule.SortByScheduledArrival();
@@ -31,7 +31,7 @@
             //Console.WriteLine("Ships sorted by Scheduled Really Arrival:");
             //schedule.PrintScheduleReally(sortedByActualArrival);
             // Запуск симуляции
-            simulation.SimulateDays(365, time, port, schedule);
+            simulation.SimulateDays(10, time, port, schedule);
             port.PrintServedShips();
             Console.WriteLine();
 
@@ -46,6 +46,10 @@
             Console.WriteLine($"Среднее время ожидания в очереди в минутах: {QueneTime} (в часах пирмерно {(decimal)QueneTime / 60 :F2})");
             var maxExpectation = port.actualShips.Concat(port.servedShips).Max(ship => ship.Expectation.TotalHours);
             Console.WriteLine($"Максимальное время ожидания в часах: {maxExpectation:F2} (в днях примерно = {maxExpectation/24:F2})");
+            foreach (var pair in simulation.hashTable)
+            {
+                Console.WriteLine($"Средняя очередь за месяц для кораблей с грузом {pair.Key}: {pair.Value:F2}");
+            }
         }
     }
 }
