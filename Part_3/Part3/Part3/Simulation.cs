@@ -12,13 +12,6 @@ namespace SeaPort
 
         Queue queue = new Queue();
         
-        private void PrintCargoQuene()
-        {
-            foreach (var entry in hashTable)
-            {
-                Console.WriteLine($"{entry.Key}: {entry.Value}");
-            }
-        }
         public void SimulateDays(int durationInDays, Time time, Port port, Schedule schedule)
         {
             QuantityBulkCrane = port.BulkCranes;

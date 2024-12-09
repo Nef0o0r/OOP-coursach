@@ -6,23 +6,6 @@ namespace SeaPort
     {
         private List<Ship> scheduleShip = new List<Ship>(); // Расписание всех кораблей на месяц
 
-        //Потом удалить
-        public void Otladka()
-        {
-            Ship ship = new Ship("Ship1", CargoType.Bulk, 100000, new DateTime(2024, 1, 1), 5);
-            scheduleShip.Add(ship);
-            ship = new  Ship("Ship2", CargoType.Bulk, 20000, new DateTime(2024, 1, 1), 5);
-            scheduleShip.Add(ship);
-            ship = new Ship("Ship3", CargoType.Bulk, 300000, new DateTime(2024, 1, 1), 5);
-            scheduleShip.Add(ship);
-            ship = new Ship("Ship4", CargoType.Bulk, 400000, new DateTime(2024, 1, 1), 5);
-            scheduleShip.Add(ship);
-            ship = new Ship("Ship5", CargoType.Bulk, 50000, new DateTime(2024, 1, 1), 5);
-            scheduleShip.Add(ship);
-            ship = new Ship("Ship6", CargoType.Bulk, 60000, new DateTime(2024, 1, 1), 5);
-            scheduleShip.Add(ship);
-        }
-
 
         // Генерация расписания судов
         public void GenerateScheduleShip(int numberOfShips, DateTime startDate)

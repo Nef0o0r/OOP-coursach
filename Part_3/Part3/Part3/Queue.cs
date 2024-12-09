@@ -7,7 +7,6 @@ namespace SeaPort
         public List<Ship> queue_bulk;
         public List<Ship> queue_liquid;
         public List<Ship> queue_container;
-        private int HoursDuration;
 
         public Queue()
         {
