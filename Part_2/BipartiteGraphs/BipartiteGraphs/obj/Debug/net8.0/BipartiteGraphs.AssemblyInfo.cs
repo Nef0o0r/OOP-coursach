@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BipartiteGraphs")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+90a93a8e236e7df9f85f4e9b8ea978843e3c5ecb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2d836d3c699a124e14a68123040f1eb0a73901bf")]
 [assembly: System.Reflection.AssemblyProductAttribute("BipartiteGraphs")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BipartiteGraphs")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
